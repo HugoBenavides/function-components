@@ -1,5 +1,9 @@
 import Button from "@mui/material/Button"
 import TextField from '@mui/material/TextField';
+import Switch from '@mui/material/Switch';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Typography from "@mui/material/Typography";
 
 function FormSingUp (){
 
@@ -30,11 +34,19 @@ function FormSingUp (){
                 fullWidth
                 margin="normal"/>
 
-            <label>Promociones</label>
-            <input type="checkbox" />
-            <label>Novedades</label>
-            <input type="checkbox" />
-            <Button variant="contained" onClick={preventDefault} >Registrarse</Button>
+            <FormGroup>
+                <FormControlLabel 
+                control={<Switch defaultChecked/>} 
+                label="Promociones"
+                margin="normal"/>
+
+                <FormControlLabel 
+                control={<Switch defaultChecked/>} 
+                label="Novedades"
+                margin="normal"/>
+            </FormGroup>
+
+            <Button variant="contained" onClick={preventDefault} margin="normal" >Registrarse</Button>
         </form>
     )
     
