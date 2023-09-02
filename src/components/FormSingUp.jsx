@@ -13,6 +13,23 @@ function FormSingUp ({handleSubmit}){  //se destrucrura el prop llamado directam
     const [prom,setProm] = useState(true);
     const [nov,setNov] = useState(true);
 
+    const [errors,setErrors] = useState({
+        name: {
+            error: false,
+            message: "Deben ser al menos 3 caracteres",
+        }
+    })
+
+    const validarNombre = (nombre) => { // el valor nombre se puso para no confundir con name, existen librerias para validar formularios como YUP o RECT HOOK FORM
+      if (nombre.length >= 3) {
+        return { name: { error: false, message: "" } };
+      } else {
+        return {
+          name: { error: true, message: "Deben ser al menos 3 caracteres", },
+        };
+      }
+    }
+
 
     return (
         <form onSubmit={(e)=>{
@@ -27,6 +44,12 @@ function FormSingUp ({handleSubmit}){  //se destrucrura el prop llamado directam
                 margin="normal"
                 onChange={ (e)=>setName(e.target.value)}
                 value={name}
+                error={errors.name.error}
+                helperText={errors.name.message
+                            ? errors.name.message
+                            : ""
+                            }
+                onBlur={(e)=>setErrors(validarNombre(e.target.value))}
                 />
             
             <TextField  
