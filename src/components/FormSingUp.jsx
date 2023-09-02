@@ -8,23 +8,24 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 function FormSingUp (){
     const [name,setName] = useState("");
+    const [lastName,setLastName] = useState("");
+    const [email,setEmail] = useState("");
+    const [prom,setProm] = useState(true);
+    const [nov,setNov] = useState(true);
 
-    const preventDefault = (e)=>{
-        e.preventDefault()
-    }
 
     return (
-        <form>
+        <form onSubmit={(e)=>{
+            e.preventDefault()
+            console.log({e,name,lastName,email,prom,nov})
+            }}>
             
             <TextField id="name"
                 label="Ingresa tu nombre"
                 variant="outlined"
                 fullWidth
                 margin="normal"
-                onChange={ (e)=>{
-                    console.log(e.target.value)
-                    setName(e.target.value)
-                } }
+                onChange={ (e)=>setName(e.target.value)}
                 value={name}
                 />
             
@@ -33,28 +34,43 @@ function FormSingUp (){
                 label="ingresa tu apellido" 
                 variant="outlined"
                 fullWidth
-                margin="normal"/>
+                margin="normal"
+                onChange={(e)=>setLastName(e.target.value)}
+                value={lastName}/>
             
             <TextField  id="email" 
                 label="Ingresa tu email" 
                 type="email" 
                 variant="outlined"
                 fullWidth
-                margin="normal"/>
+                margin="normal"
+                onChange={(e)=>setEmail(e.target.value)}
+                value={email}/>
 
             <FormGroup>
                 <FormControlLabel 
-                control={<Switch defaultChecked/>} 
+                control={<Switch/>} 
                 label="Promociones"
-                margin="normal"/>
+                margin="normal"
+                checked={prom}
+                onChange={(e)=>{
+                    setProm(e.target.checked)
+                }}
+                />
 
                 <FormControlLabel 
-                control={<Switch defaultChecked/>} 
+                control={<Switch/>} 
                 label="Novedades"
-                margin="normal"/>
+                margin="normal"
+                checked={nov}
+                onChange={(e)=>setNov(e.target.checked)}/>
             </FormGroup>
 
-            <Button variant="contained" onClick={preventDefault} margin="normal" >Registrarse</Button>
+            <Button variant="contained"
+            type="onsubmit"
+            margin="normal" >
+                Registrarse
+            </Button>
         </form>
     )
     
