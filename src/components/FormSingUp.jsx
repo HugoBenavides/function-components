@@ -1,11 +1,13 @@
+import { useState } from "react";
 import Button from "@mui/material/Button"
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Typography from "@mui/material/Typography";
+
 
 function FormSingUp (){
+    const [name,setName] = useState("");
 
     const preventDefault = (e)=>{
         e.preventDefault()
@@ -18,7 +20,13 @@ function FormSingUp (){
                 label="Ingresa tu nombre"
                 variant="outlined"
                 fullWidth
-                margin="normal"/>
+                margin="normal"
+                onChange={ (e)=>{
+                    console.log(e.target.value)
+                    setName(e.target.value)
+                } }
+                value={name}
+                />
             
             <TextField  
                 id="lastname" 
