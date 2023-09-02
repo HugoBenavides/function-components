@@ -6,7 +6,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 
-function FormSingUp (){
+function FormSingUp ({handleSubmit}){  //se destrucrura el prop llamado directamente al mismo cons dos llaves {}
     const [name,setName] = useState("");
     const [lastName,setLastName] = useState("");
     const [email,setEmail] = useState("");
@@ -17,7 +17,7 @@ function FormSingUp (){
     return (
         <form onSubmit={(e)=>{
             e.preventDefault()
-            console.log({e,name,lastName,email,prom,nov})
+            handleSubmit({e,name,lastName,email,prom,nov})
             }}>
             
             <TextField id="name"
